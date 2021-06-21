@@ -1,14 +1,21 @@
 import React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 import DiscordPng from '../../assets/discord.png';
 import { Container, Icon, IconWrraper, Label } from './styles';
 
-const ButtonIcon: React.FC = () => {
+type ButtonIconProps = TouchableOpacityProps & {
+  title: string;
+};
+
+const ButtonIcon: React.FC<ButtonIconProps> = (props) => {
+  const { title, activeOpacity } = props;
+
   return (
-    <Container>
+    <Container activeOpacity={activeOpacity}>
       <IconWrraper>
         <Icon source={DiscordPng} />
       </IconWrraper>
-      <Label>Entrar com Discord</Label>
+      <Label>{title}</Label>
     </Container>
   );
 };

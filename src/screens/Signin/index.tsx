@@ -21,7 +21,7 @@ const Signin: React.FC = () => {
         <Subtitle>
           Crie grupos para jogar seus games{'\n'}favoritos com seus amigos
         </Subtitle>
-        <ButtonIcon />
+        <ButtonIcon title="Entrar com Discord" activeOpacity={0.7} />
       </Content>
     </Container>
   );

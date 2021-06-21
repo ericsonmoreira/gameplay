@@ -18,7 +18,7 @@ export const Label = styled.Text`
 
 export const Icon = styled.Image`
   width: 24px;
-  height: 24px;
+  height: 18px;
 `;
 
 export const IconWrraper = styled.View`
