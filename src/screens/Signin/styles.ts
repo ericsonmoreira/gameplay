@@ -7,7 +7,9 @@ export const Container = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  height: 50;
-  width: 200;
-  border-bottom-width: 2;
+  height: 50px;
+  width: 200px;
+  border: #000 2px;
+  border-radius: 8px;
+  padding: 8px 16px;
 `;
