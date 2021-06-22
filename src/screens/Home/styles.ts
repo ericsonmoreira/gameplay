@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { FlatList } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -16,4 +17,10 @@ export const Header = styled.View`
 
 export const Content = styled.View`
   margin-top: 42px;
+`;
+
+export const Matches = styled(FlatList)`
+  margin-top: 24px;
+  margin-left: 24px;
+
 `;

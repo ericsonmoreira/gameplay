@@ -6,29 +6,29 @@ import Ranked from '../assets/ranked.svg';
 import Training from '../assets/training.svg';
 
 interface Categories {
-  id: number;
+  id: string;
   title: string;
   icon: React.FC<SvgProps>;
 }
 
 const categories: Categories[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Ranqueada',
     icon: Ranked,
   },
   {
-    id: 2,
+    id: '2',
     title: 'Duele 1x1',
     icon: Duel,
   },
   {
-    id: 3,
+    id: '3',
     title: 'Diversão',
     icon: Fun,
   },
   {
-    id: 4,
+    id: '4',
     title: 'Training',
     icon: Training,
   },
