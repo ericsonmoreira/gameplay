@@ -10,12 +10,12 @@ import {
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import Signin from './src/screens/Signin';
-import { theme } from './src/theme';
 import { StatusBar } from 'react-native';
+import { ThemeProvider } from 'styled-components';
 import Background from './src/components/Background';
-import Home from './src/screens/Home';
+
+import Routes from './src/routes';
+import { theme } from './src/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,8 +36,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {/* <Signin /> */}
-        <Home />
+        <Routes />
       </Background>
     </ThemeProvider>
   );
