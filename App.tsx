@@ -15,6 +15,7 @@ import Signin from './src/screens/Signin';
 import { theme } from './src/theme';
 import { StatusBar } from 'react-native';
 import Background from './src/components/Background';
+import Home from './src/screens/Home';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -35,7 +36,8 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        <Signin />
+        {/* <Signin /> */}
+        <Home />
       </Background>
     </ThemeProvider>
   );
