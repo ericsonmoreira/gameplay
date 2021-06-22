@@ -8,10 +8,10 @@ import { Container, Content, Header, Matches } from './styles';
 import ListDivider from '../../components/ListDivider';
 
 const Home: React.FC = () => {
-  const [category, setCategory] = useState<number | null>(null);
+  const [category, setCategory] = useState<string>('');
 
-  const handleCategorySelected = (categoryId: number) => {
-    categoryId == category ? setCategory(null) : setCategory(categoryId);
+  const handleCategorySelected = (categoryId: string) => {
+    categoryId == category ? setCategory('') : setCategory(categoryId);
   };
 
   const appointments: AppointmentData[] = [

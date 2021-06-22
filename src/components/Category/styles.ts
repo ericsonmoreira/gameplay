@@ -5,19 +5,21 @@ interface Checkable {
   checked?: boolean;
 }
 
-export const Content = styled.View<Checkable>`
-  opacity: ${({ checked }) => (checked ? '1' : '0.4')};
-  background-color: ${({ theme }) => theme.colors.secondary40};
+export const IconWrapper = styled.View``;
+
+export const Title = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.title700};
+  color: ${({ theme }) => theme.colors.heading};
+  font-size: 15px;
+`;
+
+export const Content = styled(LinearGradient)`
   width: 100px;
   height: 116px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 8px;
-  padding: 10px;
-`;
-
-export const IconWrapper = styled.View`
-  margin-bottom: 16px;
+  padding: 20px 0;
 `;
 
 export const Square = styled.View<Checkable>`
@@ -28,12 +30,9 @@ export const Square = styled.View<Checkable>`
     !checked ? theme.colors.secondary100 : theme.colors.primary};
   border: ${({ theme }) => theme.colors.secondary50} solid 3px;
   border-radius: 3px;
-`;
-
-export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.title500};
-  color: ${({ theme }) => theme.colors.heading};
-  font-size: 15px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
 `;
 
 export const Container = styled(LinearGradient).attrs(({ theme }) => ({
@@ -45,4 +44,5 @@ export const Container = styled(LinearGradient).attrs(({ theme }) => ({
   justify-content: center;
   border-radius: 8px;
   margin-right: 8px;
+  position: relative;
 `;

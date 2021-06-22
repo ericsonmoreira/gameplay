@@ -4,12 +4,13 @@ import Category from '../Category';
 import { Container } from './styles';
 
 interface CategorySelectProps {
-  categorySelected: number | null;
-  setCategory(categoryId: number): void;
+  categorySelected: string;
+  setCategory(categoryId: string): void;
+  hasCheckBox?: boolean;
 }
 
 const CategorySelect: React.FC<CategorySelectProps> = (props) => {
-  const { categorySelected, setCategory } = props;
+  const { categorySelected, setCategory, hasCheckBox } = props;
   return (
     <Container horizontal={true}>
       {categories.map((category) => (
@@ -19,6 +20,7 @@ const CategorySelect: React.FC<CategorySelectProps> = (props) => {
           icon={category.icon}
           checked={categorySelected === category.id}
           onPress={() => setCategory(category.id)}
+          hasCheckBox={hasCheckBox}
         />
       ))}
     </Container>
