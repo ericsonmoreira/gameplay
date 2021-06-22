@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
-
-import Ranked from '../assets/ranked.svg';
+import React from 'react';
+import { SvgProps } from 'react-native-svg';
 import Duel from '../assets/duel.svg';
 import Fun from '../assets/fun.svg';
+import Ranked from '../assets/ranked.svg';
 import Training from '../assets/training.svg';
 
 interface Categories {
   id: number;
   title: string;
-  icon: ReactNode;
+  icon: React.FC<SvgProps>;
 }
 
 const categories: Categories[] = [
@@ -28,7 +28,7 @@ const categories: Categories[] = [
     icon: Fun,
   },
   {
-    id: 3,
+    id: 4,
     title: 'Training',
     icon: Training,
   },
