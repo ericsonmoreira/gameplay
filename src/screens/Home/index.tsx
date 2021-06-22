@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonAdd from '../../components/ButtonAdd';
 import Profile from '../../components/Profile';
-import { Container, Header } from './styles';
+import { Container, Header, Content } from './styles';
 import CategorySelect from '../../components/CategorySelect';
 import { useState } from 'react';
 
@@ -22,6 +22,9 @@ const Home: React.FC = () => {
         categorySelected={category}
         setCategory={handleCategorySelected}
       />
+      <Content>
+
+      </Content>
     </Container>
   );
 };

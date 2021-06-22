@@ -13,3 +13,7 @@ export const Header = styled.View`
   margin-top: ${getStatusBarHeight() + 26}px;
   margin-bottom: 42px;
 `;
+
+export const Content = styled.View`
+  margin-top: 42px;
+`;
