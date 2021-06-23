@@ -22,5 +22,4 @@ export const Content = styled.View`
 export const Matches = styled(FlatList)`
   margin-top: 24px;
   margin-left: 24px;
-
 `;
