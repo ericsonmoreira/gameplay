@@ -5,12 +5,12 @@ import { Container } from './styles';
 
 interface CategorySelectProps {
   categorySelected: string;
-  setCategory(categoryId: string): void;
+  setCategorySelected: (categoryId: string) => void;
   hasCheckBox?: boolean;
 }
 
 const CategorySelect: React.FC<CategorySelectProps> = (props) => {
-  const { categorySelected, setCategory, hasCheckBox } = props;
+  const { categorySelected, setCategorySelected, hasCheckBox } = props;
   return (
     <Container horizontal={true}>
       {categories.map((category) => (
@@ -19,7 +19,7 @@ const CategorySelect: React.FC<CategorySelectProps> = (props) => {
           title={category.title}
           icon={category.icon}
           checked={categorySelected === category.id}
-          onPress={() => setCategory(category.id)}
+          onPress={() => setCategorySelected(category.id)}
           hasCheckBox={hasCheckBox}
         />
       ))}

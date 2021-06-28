@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import Appointment, { AppointmentData } from '../../components/Appointment';
+import Background from '../../components/Background';
 import ButtonAdd from '../../components/ButtonAdd';
 import CategorySelect from '../../components/CategorySelect';
+import ListDivider from '../../components/ListDivider';
 import ListHeader from '../../components/ListHeader';
 import Profile from '../../components/Profile';
-import { Container, Content, Header, Matches } from './styles';
-import ListDivider from '../../components/ListDivider';
-import Background from '../../components/Background';
-import { useNavigation } from '@react-navigation/native';
+import useCategorySelect from '../../hooks/CategorySelect';
 import RoutesNames from '../../routes/names.routes';
+import { Container, Content, Header, Matches } from './styles';
 
 const Home: React.FC = () => {
-  const [category, setCategory] = useState<string>('');
-
   const navigations = useNavigation();
 
-  const handleCategorySelected = (categoryId: string) => {
-    categoryId === category ? setCategory('') : setCategory(categoryId);
-  };
+  const [categorySelected, setCategorySelected] = useCategorySelect();
 
   const handleAppointmentDetails = () => {
     navigations.navigate(RoutesNames.AppointmentDetails);
+  };
+
+  const handleAppointmentCreate = () => {
+    navigations.navigate(RoutesNames.AppointmentCreate);
   };
 
   const appointments: AppointmentData[] = [
@@ -70,11 +71,11 @@ const Home: React.FC = () => {
       <Container>
         <Header>
           <Profile />
-          <ButtonAdd />
+          <ButtonAdd onPress={handleAppointmentCreate} />
         </Header>
         <CategorySelect
-          categorySelected={category}
-          setCategory={handleCategorySelected}
+          categorySelected={categorySelected}
+          setCategorySelected={setCategorySelected}
         />
         <Content>
           <ListHeader title="Partidas agendadas" subTitle="Total 6" />

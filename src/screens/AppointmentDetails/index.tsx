@@ -69,7 +69,7 @@ const AppointmentDetails: React.FC = () => {
       />
 
       <Footer>
-        <ButtonIcon title="" />
+        <ButtonIcon title="Entrar na partida" />
       </Footer>
     </Background>
   );
