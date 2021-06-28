@@ -1,5 +1,9 @@
 import styled from 'styled-components/native';
 
+export const Container = styled.KeyboardAvoidingView`
+  flex: 1;
+`;
+
 export const Label = styled.Text`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.title700};
@@ -36,4 +40,33 @@ export const Select = styled.View`
 export const SelectBody = styled.View`
   flex: 1;
   align-items: center;
+`;
+
+export const Field = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+`;
+
+export const Column = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Divider = styled.Text`
+  margin-right: 4px;
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fonts.text500};
+  color: ${({ theme }) => theme.colors.highlight};
+`;
+
+export const CaractersLimit = styled.Text`
+  font-size: 13px;
+  font-family: ${({ theme }) => theme.fonts.text400};
+  color: ${({ theme }) => theme.colors.highlight};
+`;
+
+export const Footer = styled.View`
+  margin: 20px 0px 56px;
 `;
