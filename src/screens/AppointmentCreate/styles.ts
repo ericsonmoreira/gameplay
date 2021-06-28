@@ -22,8 +22,9 @@ export const Title = styled.View`
 export const Img = styled.View`
   width: 64px;
   height: 68px;
-  background-color: ${({ theme }) => theme.colors.secondary50};
+  background-color: ${({ theme }) => theme.colors.secondary40};
   border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary50};
 `;
 
 export const Select = styled.View`

@@ -13,9 +13,9 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import Background from './src/components/Background';
-
 import Routes from './src/routes';
 import { theme } from './src/theme';
+import { AuthProvider } from './src/context/auth';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,7 +36,9 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        <Routes />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </Background>
     </ThemeProvider>
   );
