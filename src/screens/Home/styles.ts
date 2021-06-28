@@ -15,10 +15,6 @@ export const Header = styled.View`
   margin-bottom: 42px;
 `;
 
-export const Content = styled.View`
-  margin-top: 42px;
-`;
-
 export const Matches = styled(FlatList)`
   margin-top: 24px;
   margin-left: 24px;

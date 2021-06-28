@@ -1,8 +1,12 @@
 import React from 'react';
 import { Container } from './styles';
 
-const ListDivider: React.FC = () => {
-  return <Container />;
+interface ListDividerProps {
+  isCentered?: boolean;
+}
+
+const ListDivider: React.FC<ListDividerProps> = ({ isCentered }) => {
+  return <Container isCentered={isCentered} />;
 };
 
 export default ListDivider;

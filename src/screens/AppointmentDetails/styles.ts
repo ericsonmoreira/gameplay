@@ -5,7 +5,6 @@ import styled from 'styled-components/native';
 export const Banner = styled.ImageBackground`
   width: 100%;
   height: 234px;
-  margin-bottom: 30px;
 `;
 
 export const BannerContent = styled.View`
@@ -24,6 +23,7 @@ export const SubTitle = styled.Text`
   font-size: 13px;
   font-family: ${({ theme }) => theme.fonts.text400};
   color: ${({ theme }) => theme.colors.heading};
+  line-height: 21px;
 `;
 
 export const MembersList = styled(FlatList)`

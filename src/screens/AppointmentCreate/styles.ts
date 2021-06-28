@@ -55,7 +55,7 @@ export const Column = styled.View`
 `;
 
 export const Divider = styled.Text`
-  margin-right: 4px;
+  margin: 0 8px;
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.text500};
   color: ${({ theme }) => theme.colors.highlight};

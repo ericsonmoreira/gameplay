@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
 
 interface Ownerable {
@@ -64,4 +65,13 @@ export const Player = styled.Text<Ownerable>`
   font-size: 13px;
   margin-left: 8px;
   margin-right: 24px;
+`;
+
+export const GuildContainer = styled(LinearGradient)`
+  height: 68px;
+  width: 64px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
 `;

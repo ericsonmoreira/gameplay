@@ -40,6 +40,10 @@ const AppointmentCreate: React.FC = () => {
     setOpenGuildsModal(true);
   };
 
+  const handleCloseGuildsModal = () => {
+    setOpenGuildsModal(false);
+  };
+
   const handleGuildSelect = (guildSelect: GuildData) => {
     setGuild(guildSelect);
     setOpenGuildsModal(false);
@@ -47,8 +51,8 @@ const AppointmentCreate: React.FC = () => {
 
   return (
     <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView>
-        <Background>
+      <Background>
+        <ScrollView>
           <Header title="Agendar partida" />
 
           <Title>
@@ -81,7 +85,7 @@ const AppointmentCreate: React.FC = () => {
 
             <Field>
               <View>
-                <Label>Dia e mês</Label>
+                <Label style={{ marginBottom: 12 }}>Dia e mês</Label>
                 <Column>
                   <SmallInput keyboardType="numeric" maxLength={2} />
                   <Divider>/</Divider>
@@ -89,7 +93,7 @@ const AppointmentCreate: React.FC = () => {
                 </Column>
               </View>
               <View>
-                <Label>Hora e minnuto</Label>
+                <Label style={{ marginBottom: 12 }}>Hora e minnuto</Label>
                 <Column>
                   <SmallInput keyboardType="numeric" maxLength={2} />
                   <Divider>:</Divider>
@@ -98,7 +102,7 @@ const AppointmentCreate: React.FC = () => {
               </View>
             </Field>
             <Field>
-              <Label>Descrição</Label>
+              <Label style={{ marginBottom: 12 }}>Descrição</Label>
               <CaractersLimit>Max 100 caracteres</CaractersLimit>
             </Field>
             <TextArea
@@ -111,9 +115,9 @@ const AppointmentCreate: React.FC = () => {
               <Button title="Agendar" />
             </Footer>
           </Form>
-        </Background>
-      </ScrollView>
-      <ModalView visible={openGuildsModal}>
+        </ScrollView>
+      </Background>
+      <ModalView visible={openGuildsModal} closeModal={handleCloseGuildsModal}>
         <Guilds handleGuildSelect={handleGuildSelect} />
       </ModalView>
     </Container>

@@ -13,17 +13,12 @@ import {
   Footer,
   DataInfo,
   Date,
+  GuildContainer,
 } from './styles';
 import PlayerSvg from '../../assets/player.svg';
 import CalendarSvg from '../../assets/calendar.svg';
 import { theme } from '../../theme';
-
-export interface GuildData {
-  id: string;
-  name: string;
-  icon: string;
-  owner: boolean;
-}
+import { GuildData } from '../Guild';
 
 export interface AppointmentData {
   id: string;
@@ -41,6 +36,8 @@ const Appointment: React.FC<AppointmentProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, ...rest } = props;
 
+  const { secondary50, secondary70 } = theme.colors;
+
   const { owner } = data.guild;
 
   const category = categories.find((elem) => elem.id === data.category);
@@ -48,7 +45,9 @@ const Appointment: React.FC<AppointmentProps> = (props) => {
   return (
     <RectButton {...rest}>
       <Container>
-        <GuildIcon />
+        <GuildContainer colors={[secondary50, secondary70]}>
+          <GuildIcon />
+        </GuildContainer>
         <Content>
           <Header>
             <Title>{data.guild.name}</Title>
@@ -64,9 +63,7 @@ const Appointment: React.FC<AppointmentProps> = (props) => {
               <PlayerSvg
                 fill={owner ? theme.colors.primary : theme.colors.on}
               />
-              <Player owner={owner}>
-                {owner ? 'Anfitrião' : 'Visitante'}
-              </Player>
+              <Player owner={owner}>{owner ? 'Anfitrião' : 'Visitante'}</Player>
             </PayersInfo>
           </Footer>
         </Content>

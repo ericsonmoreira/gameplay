@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         <Feather name="arrow-left" size={24} color={heading} />
       </BackButton>
       <Title>{title}</Title>
-      {action && <View>{action}</View>}
+      {action ? <View>{action}</View> : <View style={{ width: 24 }} />}
     </Container>
   );
 };
