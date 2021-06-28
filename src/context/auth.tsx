@@ -1,28 +1,33 @@
 import React, { createContext, useContext } from 'react';
+import { useState } from 'react';
+
+interface User {
+  id: string;
+  username: string;
+  firstname: string;
+  avatar: string;
+  email: string;
+  token: string;
+}
 
 export interface AuthContextData {
-  name: string;
-  email: string;
-  avatar: string;
+  user: User;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.FC = ({ children }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, setUser] = useState<User>({} as User);
+
   return (
-    <AuthContext.Provider
-      value={{
-        name: 'Ericson',
-        email: 'moreira.ericson@gmail.com',
-        avatar: 'ericson.png',
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
 };
 
-export function useAuth(): AuthContextData {
+function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
   return context;
 }
+
+export { AuthProvider, useAuth };

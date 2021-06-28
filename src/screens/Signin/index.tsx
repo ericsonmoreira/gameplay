@@ -3,11 +3,15 @@ import React from 'react';
 import IllustrationPng from '../../assets/illustration.png';
 import Background from '../../components/Background';
 import ButtonIcon from '../../components/ButtonIcon';
+import { useAuth } from '../../context/auth';
 import RoutesNames from '../../routes/names.routes';
 import { Container, Content, Img, Subtitle, Title } from './styles';
 
 const Signin: React.FC = () => {
   const navigation = useNavigation();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const user = useAuth();
 
   const handleSignin = () => {
     navigation.navigate(RoutesNames.Home);
