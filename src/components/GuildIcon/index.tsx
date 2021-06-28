@@ -3,7 +3,7 @@ import { Container } from './styles';
 
 const GuildIcon: React.FC = () => {
   const uri =
-    'https://cdn.iconscout.com/icon/free/png-512/discord-2474808-2056094.png';
+    'http://pm1.narvii.com/6427/1aa160baa0c1d44c5b3350999ef2b66abba6be41_00.jpg';
 
   return <Container source={{ uri }} resizeMode="cover" />;
 };
