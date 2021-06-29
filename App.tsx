@@ -10,12 +10,17 @@ import {
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, LogBox } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import Background from './src/components/Background';
 import Routes from './src/routes';
 import { theme } from './src/theme';
 import { AuthProvider } from './src/context/auth';
+
+// Ignorando esse tipo de log
+LogBox.ignoreLogs([
+  'You are not currently signed in to Expo on your development machine.',
+]);
 
 export default function App() {
   const [fontsLoaded] = useFonts({

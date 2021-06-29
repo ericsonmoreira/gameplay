@@ -8,10 +8,19 @@ import {
   SCOPE,
   RESPONSE_TYPE,
   CLIENTE_ID,
-  // CDN_IMAGE,
+  CDN_IMAGE,
 } from '../configs';
 
 import api from '../services/api';
+
+type AuthorizationResponse = AuthSession.AuthSessionResult & {
+  params: {
+    access_token: string;
+    expires_in: string;
+    scope: string;
+    token_type: string;
+  };
+};
 
 interface User {
   id: string;
@@ -42,11 +51,29 @@ const AuthProvider: React.FC = ({ children }) => {
     try {
       setLoading(true);
 
-      const response = await AuthSession.startAsync({
+      const {
+        type,
+        params: { access_token, token_type },
+      } = (await AuthSession.startAsync({
         authUrl,
-      });
+      })) as AuthorizationResponse;
 
-      console.log(response);
+      if (type === 'success') {
+        api.defaults.headers.authorization = `${token_type} ${access_token}`;
+
+        // URL da documentação do Discord
+        const userInfo = await api.get('/users/@me');
+
+        const firstname = userInfo.data.username.split(' ')[0] as string;
+        userInfo.data.avatar =
+          `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png` as string;
+
+        setUser({
+          ...userInfo.data,
+          firstname,
+          token: access_token,
+        });
+      }
     } catch {
       throw new Error('Não foi possível autenticar');
     } finally {
