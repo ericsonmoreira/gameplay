@@ -3,6 +3,6 @@ const REDIRECT_URI =
 const SCOPE = 'guilds%20connections%20email%20identify';
 const RESPONSE_TYPE = 'token';
 const CLIENTE_ID = '859343294982782996';
-const CDN_IMAGE = 'https://cdn.discordapp.com/';
+const CDN_IMAGE = 'https://cdn.discordapp.com';
 
 export { REDIRECT_URI, SCOPE, RESPONSE_TYPE, CLIENTE_ID, CDN_IMAGE };
