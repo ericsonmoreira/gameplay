@@ -15,10 +15,11 @@ import api from '../services/api';
 
 type AuthorizationResponse = AuthSession.AuthSessionResult & {
   params: {
-    access_token: string;
+    access_token?: string;
     expires_in: string;
     scope: string;
     token_type: string;
+    error?: string;
   };
 };
 
@@ -53,12 +54,12 @@ const AuthProvider: React.FC = ({ children }) => {
 
       const {
         type,
-        params: { access_token, token_type },
+        params: { access_token, token_type, error },
       } = (await AuthSession.startAsync({
         authUrl,
       })) as AuthorizationResponse;
 
-      if (type === 'success') {
+      if (type === 'success' && !error) {
         api.defaults.headers.authorization = `${token_type} ${access_token}`;
 
         // URL da documentação do Discord

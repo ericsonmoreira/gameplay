@@ -1,8 +1,7 @@
-const REDIRECT_URI =
-  'https%3A%2F%2Fauth.expo.io%2F%40anonymous%2Fgameplay-4c34f359-0417-49b7-a288-17a93d0f4843';
-const SCOPE = 'guilds%20connections%20email%20identify';
-const RESPONSE_TYPE = 'token';
-const CLIENTE_ID = '859343294982782996';
-const CDN_IMAGE = 'https://cdn.discordapp.com';
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const SCOPE = process.env.SCOPE;
+const RESPONSE_TYPE = process.env.RESPONSE_TYPE;
+const CLIENTE_ID = process.env.CLIENTE_ID;
+const CDN_IMAGE = process.env.CDN_IMAGE;
 
 export { REDIRECT_URI, SCOPE, RESPONSE_TYPE, CLIENTE_ID, CDN_IMAGE };

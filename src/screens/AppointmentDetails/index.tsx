@@ -65,7 +65,7 @@ const AppointmentDetails: React.FC = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Members data={item} />}
         showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <ListDivider />}
+        ItemSeparatorComponent={() => <ListDivider isCentered />}
       />
 
       <Footer>
