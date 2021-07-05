@@ -1,5 +1,5 @@
 import { Fontisto } from '@expo/vector-icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import BannerImg from '../../assets/banner.png';
 import Background from '../../components/Background';
@@ -17,59 +17,106 @@ import {
   Footer,
 } from './styles';
 import ButtonIcon from '../../components/ButtonIcon';
+import { useRoute } from '@react-navigation/native';
+import { AppointmentData } from '../../components/Appointment';
+import api from '../../services/api';
+import { Alert, Platform, Share } from 'react-native';
+import Load from '../../components/Load';
+import * as Linking from 'expo-linking';
+
+interface AppointmentDetailsParams {
+  guildSelectd: AppointmentData;
+}
+
+interface Widget {
+  id: string;
+  name: string;
+  instant_invide: string;
+  members: MembersData[];
+  presence_count: number;
+}
 
 const AppointmentDetails: React.FC = () => {
-  const members: MembersData[] = [
-    {
-      id: '1',
-      username: 'Éricson',
-      avatar_url: 'https://github.com/ericsonmoreira.png',
-      status: 'online',
-    },
-    {
-      id: '2',
-      username: 'Rogério',
-      avatar_url: 'https://github.com/ericsonmoreira.png',
-      status: 'offline',
-    },
-    {
-      id: '3',
-      username: 'Moreira',
-      avatar_url: 'https://github.com/ericsonmoreira.png',
-      status: 'offline',
-    },
-  ];
+  const route = useRoute();
+
+  const { guildSelectd } = route.params as AppointmentDetailsParams;
+
+  const [loading, setLoading] = useState(true);
+
+  const [widget, setWidget] = useState<Widget>({} as Widget);
+
+  const fetchGuildWidget = async () => {
+    try {
+      const response = await api.get(`/guilds/${guildSelectd.id}/widget.json`);
+
+      console.log(response.data);
+
+      setWidget(response.data);
+    } catch {
+      Alert.alert(
+        'Verifique as configurações. Será que o Widget está abilitado?'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleShareInvatation = () => {
+    const message =
+      Platform.OS === 'ios'
+        ? `Junte-se a ${guildSelectd.guild.name}`
+        : widget.instant_invide;
+    Share.share({
+      message,
+      url: widget?.instant_invide || '',
+    });
+  };
+
+  const handleOpenGuild = () => {
+    Linking.openURL(widget?.instant_invide);
+  };
+
+  useEffect(() => {
+    fetchGuildWidget();
+  }, []);
 
   return (
     <Background>
       <Header
         title="Detalhes"
         action={
-          <BorderlessButton>
-            <Fontisto name="share" size={24} color={theme.colors.primary} />
-          </BorderlessButton>
+          guildSelectd.guild.owner && (
+            <BorderlessButton onPress={handleShareInvatation}>
+              <Fontisto name="share" size={24} color={theme.colors.primary} />
+            </BorderlessButton>
+          )
         }
       />
       <Banner source={BannerImg}>
         <BannerContent>
-          <Title>Lendários</Title>
-          <SubTitle>
-            É hoje que vamos chegar ao challenger sem perder uma partida da md10
-          </SubTitle>
+          <Title>{guildSelectd.guild.name}</Title>
+          <SubTitle>{guildSelectd.description}</SubTitle>
         </BannerContent>
       </Banner>
-      <ListHeader title="Jogadores" subTitle="Total 3" />
 
-      <MembersList
-        data={members}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Members data={item} />}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <ListDivider isCentered />}
-      />
+      {loading ? (
+        <Load />
+      ) : (
+        <>
+          <ListHeader title="Jogadores" subTitle="Total 3" />
+
+          <MembersList
+            data={widget.members}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <Members data={item} />}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => <ListDivider isCentered />}
+          />
+        </>
+      )}
 
       <Footer>
-        <ButtonIcon title="Entrar na partida" />
+        <ButtonIcon title="Entrar na partida" onPress={handleOpenGuild} />
       </Footer>
     </Background>
   );

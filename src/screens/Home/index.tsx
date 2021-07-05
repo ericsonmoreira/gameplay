@@ -23,8 +23,8 @@ const Home: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
 
-  const handleAppointmentDetails = () => {
-    navigations.navigate(RoutesNames.AppointmentDetails);
+  const handleAppointmentDetails = (guildSelectd: AppointmentData) => {
+    navigations.navigate(RoutesNames.AppointmentDetails, { guildSelectd });
   };
 
   const handleAppointmentCreate = () => {
@@ -69,13 +69,19 @@ const Home: React.FC = () => {
           <Load />
         ) : (
           <>
-            <ListHeader title="Partidas agendadas" subTitle="Total 6" />
+            <ListHeader
+              title="Partidas agendadas"
+              subTitle={`Total ${appointments.length}`}
+            />
 
             <Matches
               data={appointments}
               keyExtractor={(item) => String(item.id)}
               renderItem={({ item }) => (
-                <Appointment onPress={handleAppointmentDetails} data={item} />
+                <Appointment
+                  onPress={() => handleAppointmentDetails(item)}
+                  data={item}
+                />
               )}
               showsVerticalScrollIndicator={false}
               ItemSeparatorComponent={() => <ListDivider />}
