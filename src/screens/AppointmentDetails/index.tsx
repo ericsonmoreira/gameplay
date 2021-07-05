@@ -47,7 +47,9 @@ const AppointmentDetails: React.FC = () => {
 
   const fetchGuildWidget = async () => {
     try {
-      const response = await api.get(`/guilds/${guildSelectd.id}/widget.json`);
+      const response = await api.get(
+        `/guilds/${guildSelectd.guild.id}/widget.json`
+      );
 
       console.log(response.data);
 
@@ -103,7 +105,10 @@ const AppointmentDetails: React.FC = () => {
         <Load />
       ) : (
         <>
-          <ListHeader title="Jogadores" subTitle="Total 3" />
+          <ListHeader
+            title="Jogadores"
+            subTitle={`Total ${widget?.members?.length || 0}`}
+          />
 
           <MembersList
             data={widget.members}
@@ -115,9 +120,11 @@ const AppointmentDetails: React.FC = () => {
         </>
       )}
 
-      <Footer>
-        <ButtonIcon title="Entrar na partida" onPress={handleOpenGuild} />
-      </Footer>
+      {guildSelectd.guild.owner && (
+        <Footer>
+          <ButtonIcon title="Entrar na partida" onPress={handleOpenGuild} />
+        </Footer>
+      )}
     </Background>
   );
 };
