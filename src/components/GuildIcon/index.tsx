@@ -1,11 +1,27 @@
 import React from 'react';
-import { Container } from './styles';
+import { CDN_IMAGE } from '../../configs';
+import { Container, Img } from './styles';
+import DiscordSvg from '../../assets/discord.svg';
 
-const GuildIcon: React.FC = () => {
-  const uri =
-    'http://pm1.narvii.com/6427/1aa160baa0c1d44c5b3350999ef2b66abba6be41_00.jpg';
+interface GuildIconProps {
+  guildId: string;
+  iconId: string | null;
+}
 
-  return <Container source={{ uri }} resizeMode="cover" />;
+const GuildIcon: React.FC<GuildIconProps> = (props) => {
+  const { guildId, iconId } = props;
+
+  const uri = `${CDN_IMAGE}/icons/${guildId}/${iconId}.png`;
+
+  return (
+    <Container>
+      {guildId && iconId ? (
+        <Img source={{ uri }} resizeMode="cover" />
+      ) : (
+        <DiscordSvg width={40} height={40} />
+      )}
+    </Container>
+  );
 };
 
 export default GuildIcon;

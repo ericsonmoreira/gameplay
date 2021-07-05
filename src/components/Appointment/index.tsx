@@ -46,7 +46,7 @@ const Appointment: React.FC<AppointmentProps> = (props) => {
     <RectButton {...rest}>
       <Container>
         <GuildContainer colors={[secondary50, secondary70]}>
-          <GuildIcon />
+          <GuildIcon guildId={data.guild.id} iconId={data.guild.icon} />
         </GuildContainer>
         <Content>
           <Header>

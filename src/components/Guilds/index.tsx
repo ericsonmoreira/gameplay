@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Guild, { GuildData } from '../Guild';
 import ListDivider from '../ListDivider';
 import { Container, GuildsList } from './styles';
-import data from './data';
+import Load from '../Load';
+import api from '../../services/api';
 
 interface GuildsProps {
   handleGuildSelect(guildSelect: GuildData): void;
@@ -11,19 +12,39 @@ interface GuildsProps {
 const Guilds: React.FC<GuildsProps> = (props) => {
   const { handleGuildSelect } = props;
 
+  const [guilds, setGuilds] = useState<GuildData[]>([]);
+
+  const [loading, setLoading] = useState(true);
+
+  const fetchGuilds = useCallback(async () => {
+    const response = await api.get('/users/@me/guilds');
+
+    setGuilds(response.data);
+    
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchGuilds();
+  }, []);
+
   return (
     <Container>
-      <GuildsList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Guild data={item} onPress={() => handleGuildSelect(item)} />
-        )}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <ListDivider isCentered />}
-        contentContainerStyle={{ paddingBottom: 68, paddingTop: 100 }}
-        ListHeaderComponent={() => <ListDivider isCentered />}
-      />
+      {loading ? (
+        <Load />
+      ) : (
+        <GuildsList
+          data={guilds}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Guild data={item} onPress={() => handleGuildSelect(item)} />
+          )}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <ListDivider isCentered />}
+          contentContainerStyle={{ paddingBottom: 68, paddingTop: 100 }}
+          ListHeaderComponent={() => <ListDivider isCentered />}
+        />
+      )}
     </Container>
   );
 };

@@ -19,6 +19,7 @@ declare module 'styled-components' {
       heading: string;
       line: string;
       on: string;
+      discord: string;
     };
     fonts: {
       title700: string;
@@ -48,6 +49,8 @@ export const theme = {
     heading: '#DDE3F0',
     line: '#991F36',
     on: '#32BD50',
+
+    discord: '#7289DA',
   },
 
   fonts: {
