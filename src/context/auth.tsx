@@ -34,6 +34,7 @@ export interface AuthContextData {
   user: User;
   loading: boolean;
   signIn(): void;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -84,6 +85,12 @@ const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  const signOut = async () => {
+    setUser({} as User);
+
+    await AsyncStorage.removeItem(COLLECTION_USERS);
+  };
+
   const loadUserStorageData = async () => {
     const storage = await AsyncStorage.getItem(COLLECTION_USERS);
     if (storage) {
@@ -100,7 +107,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
